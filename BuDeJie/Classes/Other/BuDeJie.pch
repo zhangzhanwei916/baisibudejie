@@ -1,0 +1,51 @@
+//
+//  BuDeJie.pch
+//  BuDeJie
+//
+//  Created by 张战威 on 16/4/1.
+//  Copyright © 2016年 张战威. All rights reserved.
+//
+
+/*
+    pch里面所有东西,被所有文件共享
+ 
+ pch作用
+    1.存放公用宏
+    2.存放公用头文件
+    3.自定义Log
+ 
+    pch步骤:一定要提前编译
+ */
+
+#define XMGAFNWriteToPlist(filename) [responseObject writeToFile:[NSString stringWithFormat:@"/Users/张战威/Desktop/%@.plist", @#filename] atomically:YES];
+
+#define iphone6P (XMGScreenH == 736)
+#define iphone6 (XMGScreenH == 667)
+#define iphone5 (XMGScreenH == 568)
+#define iphone4 (XMGScreenH == 480)
+#define XMGScreenH [UIScreen mainScreen].bounds.size.height
+#define XMGScreenW [UIScreen mainScreen].bounds.size.width
+#define XMGColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
+#define XMGGlobeColor XMGColor(215, 215, 215)
+#define XMGRandomColor XMGColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+
+
+#import "UIView+Frame.h"
+#import "UIBarButtonItem+Item.h"
+#import "UIImageView+Download.h"
+#import "XMGConst.h"
+
+
+// ...:宏里面可变参数
+
+#define XMGFunc XMGLog(@"%s",__func__)
+
+#ifdef DEBUG // 调试
+
+#define XMGLog(...) NSLog(__VA_ARGS__);
+
+#else // 发布
+
+#define XMGLog(...) 
+
+#endif
